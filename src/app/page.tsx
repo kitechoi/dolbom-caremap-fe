@@ -4,13 +4,17 @@ import React, { useEffect, useState } from 'react';
 import { TeacherMap } from '@/features/teacher/components/TeacherMap';
 import { TeacherProfile } from '@/features/teacher/components/TeacherProfile';
 import { ParentSearch } from '@/features/parent/components/ParentSearch';
+import { TeacherDashboard } from '@/features/teacher/components/TeacherDashboard';
 import { useTeacherStore } from '@/stores/teacherStore';
+import { useUserStore } from '@/stores/userStore';
 import { mockTeachers } from '@/services/mockData';
-import { Teacher } from '@/types';
+import { Teacher, TeacherStatus } from '@/types';
 
 export default function HomePage() {
-  const { teachers, setTeachers, selectedTeacher, setSelectedTeacher, isLoading, setLoading } = useTeacherStore();
+  const { teachers, setTeachers, selectedTeacher, setSelectedTeacher, isLoading, setLoading, updateTeacherStatus, updateActivityRadius } = useTeacherStore();
+  const { user } = useUserStore();
   const [showFilters, setShowFilters] = useState(false);
+  const [activeTab, setActiveTab] = useState('overview');
 
   useEffect(() => {
     loadTeachers();
@@ -33,6 +37,75 @@ export default function HomePage() {
     alert('채팅 기능은 준비 중입니다.');
   };
 
+  // 선생님 역할일 때는 대시보드 표시
+  if (user?.currentRole === 'teacher') {
+    // 현재 선생님 정보 (실제로는 API에서 가져와야 함)
+    const currentTeacher = {
+      id: user.teacherId || '1',
+      name: user.name + ' 선생님',
+      status: TeacherStatus.AVAILABLE,
+      activityRadius: 1000 as const,
+      stats: {
+        totalRequests: 45,
+        acceptedRequests: 38,
+        completedCare: 156,
+        responseRate: 84.4,
+        averageRating: 4.9,
+        thisMonthEarnings: 1250000,
+        todaySchedule: 2,
+        weekSchedule: 8,
+      }
+    };
+
+    return (
+      <div className="min-h-screen bg-gray-50">
+        <div className="bg-white shadow-sm border-b">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex justify-between items-center py-4">
+              <h1 className="text-2xl font-bold text-gray-900">선생님 대시보드</h1>
+              <div className="flex items-center gap-4">
+                <span className="text-sm text-gray-600">안녕하세요, {currentTeacher.name}</span>
+                <button className="px-4 py-2 bg-[#8EBEEF] text-white rounded-lg hover:bg-[#6BA5DC]">
+                  프로필 수정
+                </button>
+              </div>
+            </div>
+            
+            <div className="flex gap-1 -mb-px">
+              {['overview', 'schedule', 'requests', 'reviews', 'earnings'].map((tab) => (
+                <button
+                  key={tab}
+                  onClick={() => setActiveTab(tab)}
+                  className={`px-6 py-3 text-sm font-medium border-b-2 transition-colors ${
+                    activeTab === tab
+                      ? 'text-[#8EBEEF] border-[#8EBEEF]'
+                      : 'text-gray-500 border-transparent hover:text-gray-700'
+                  }`}
+                >
+                  {tab === 'overview' && '개요'}
+                  {tab === 'schedule' && '일정'}
+                  {tab === 'requests' && '요청'}
+                  {tab === 'reviews' && '리뷰'}
+                  {tab === 'earnings' && '수익'}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <TeacherDashboard 
+            teacher={currentTeacher} 
+            activeTab={activeTab}
+            onStatusChange={(status) => updateTeacherStatus(currentTeacher.id, status)}
+            onRadiusChange={(radius) => updateActivityRadius(currentTeacher.id, radius)}
+          />
+        </div>
+      </div>
+    );
+  }
+
+  // 부모 역할일 때는 지도 표시
   return (
     <div className="flex flex-col h-[calc(100vh-4rem)]">
       {/* 상단 검색 바 */}
