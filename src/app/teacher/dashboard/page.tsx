@@ -35,7 +35,7 @@ export default function TeacherDashboardPage() {
             <h1 className="text-2xl font-bold text-gray-900">선생님 대시보드</h1>
             <div className="flex items-center gap-4">
               <span className="text-sm text-gray-600">안녕하세요, {teacher.name}</span>
-              <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+              <button className="px-4 py-2 bg-[#8EBEEF] text-white rounded-lg hover:bg-[#6BA5DC]">
                 프로필 수정
               </button>
             </div>
@@ -48,7 +48,7 @@ export default function TeacherDashboardPage() {
                 onClick={() => setActiveTab(tab)}
                 className={`px-6 py-3 text-sm font-medium border-b-2 transition-colors ${
                   activeTab === tab
-                    ? 'text-blue-600 border-blue-600'
+                    ? 'text-[#8EBEEF] border-[#8EBEEF]'
                     : 'text-gray-500 border-transparent hover:text-gray-700'
                 }`}
               >

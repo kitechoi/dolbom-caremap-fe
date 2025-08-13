@@ -81,7 +81,7 @@ export default function HomePage() {
           {isLoading ? (
             <div className="absolute inset-0 flex items-center justify-center bg-gray-50">
               <div className="text-center">
-                <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+                <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-[#8EBEEF]"></div>
                 <p className="mt-4 text-gray-600">선생님을 찾는 중...</p>
               </div>
             </div>
@@ -111,13 +111,13 @@ export default function HomePage() {
       <div className="bg-white border-t border-gray-200 p-3">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-4 text-sm">
-            <button className="flex items-center gap-2 px-3 py-1.5 bg-blue-50 text-blue-600 rounded-full hover:bg-blue-100">
+            <button className="flex items-center gap-2 px-3 py-1.5 bg-[#E2EEFB] text-[#5A7FA5] rounded-full hover:bg-[#C1DDF7]">
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
               </svg>
               내 위치
             </button>
-            <select className="px-3 py-1.5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-blue-500">
+            <select className="px-3 py-1.5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-[#8EBEEF]">
               <option>500m</option>
               <option>1km</option>
               <option>2km</option>
@@ -129,7 +129,7 @@ export default function HomePage() {
             <button className="px-3 py-1.5 text-sm border border-gray-300 rounded-lg hover:bg-gray-50">
               리스트 보기
             </button>
-            <button className="px-3 py-1.5 text-sm bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+            <button className="px-3 py-1.5 text-sm bg-[#8EBEEF] text-white rounded-lg hover:bg-[#6BA5DC]">
               긴급 돌봄 요청
             </button>
           </div>

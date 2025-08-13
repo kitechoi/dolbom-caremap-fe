@@ -18,8 +18,8 @@ export const Header: React.FC = () => {
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center">
             <Link href="/" className="flex items-center">
-              <span className="text-2xl font-bold text-blue-600">돌봄당근</span>
-              <span className="ml-2 text-sm text-gray-600">우리 동네 돌봄 선생님</span>
+              <span className="text-2xl font-bold text-[#EF8E8E]">아이로뷰</span>
+              <span className="ml-2 text-sm text-gray-600">우리 아이를, 동네에서, 사랑의 시선으로</span>
             </Link>
           </div>
           
@@ -28,9 +28,9 @@ export const Header: React.FC = () => {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`text-sm font-medium transition-colors hover:text-blue-600 ${
+                className={`text-sm font-medium transition-colors hover:text-[#EF8E8E] ${
                   pathname === item.href
-                    ? 'text-blue-600 border-b-2 border-blue-600'
+                    ? 'text-[#EF8E8E] border-b-2 border-[#EF8E8E]'
                     : 'text-gray-700'
                 }`}
               >

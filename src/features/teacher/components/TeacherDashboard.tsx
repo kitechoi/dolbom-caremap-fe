@@ -44,7 +44,7 @@ export const TeacherDashboard: React.FC<TeacherDashboardProps> = ({
                 onClick={() => onStatusChange(item.status)}
                 className={`p-4 rounded-lg border-2 transition-all ${
                   teacher.status === item.status
-                    ? 'border-blue-500 bg-blue-50'
+                    ? 'border-[#8EBEEF] bg-[#E2EEFB]'
                     : 'border-gray-200 hover:border-gray-300'
                 }`}
               >
@@ -65,7 +65,7 @@ export const TeacherDashboard: React.FC<TeacherDashboardProps> = ({
                 onClick={() => onRadiusChange(radius as 500 | 1000 | 2000)}
                 className={`px-6 py-3 rounded-lg border-2 transition-all ${
                   teacher.activityRadius === radius
-                    ? 'border-blue-500 bg-blue-50 text-blue-600'
+                    ? 'border-[#8EBEEF] bg-[#E2EEFB] text-[#5A7FA5]'
                     : 'border-gray-200 hover:border-gray-300'
                 }`}
               >
@@ -83,8 +83,8 @@ export const TeacherDashboard: React.FC<TeacherDashboardProps> = ({
                 <p className="text-sm text-gray-600">오늘 일정</p>
                 <p className="text-2xl font-bold text-gray-900">{stats.todaySchedule}</p>
               </div>
-              <div className="p-3 bg-blue-100 rounded-full">
-                <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="p-3 bg-[#E2EEFB] rounded-full">
+                <svg className="w-6 h-6 text-[#5A7FA5]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                 </svg>
               </div>
@@ -157,7 +157,7 @@ export const TeacherDashboard: React.FC<TeacherDashboardProps> = ({
                     )}
                   </div>
                   <div className="flex gap-2">
-                    <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+                    <button className="px-4 py-2 bg-[#8EBEEF] text-white rounded-lg hover:bg-[#6BA5DC]">
                       수락
                     </button>
                     <button className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">

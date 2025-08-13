@@ -57,7 +57,7 @@ export const TeacherMap: React.FC<TeacherMapProps> = ({
   return (
     <div className="relative w-full h-full bg-gray-50">
       {/* 지도 배경 (그리드 패턴으로 지도 느낌) */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-green-50">
+      <div className="absolute inset-0 bg-gradient-to-br from-[#E2EEFB] to-[#E2FBF0]">
         <div 
           className="absolute inset-0"
           style={{
@@ -106,18 +106,18 @@ export const TeacherMap: React.FC<TeacherMapProps> = ({
         <div className="relative">
           {/* 내 위치 반경 효과 */}
           <div className="absolute inset-0 w-24 h-24 -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2">
-            <div className="absolute inset-0 bg-blue-400 rounded-full opacity-20 animate-ping" />
-            <div className="absolute inset-2 bg-blue-400 rounded-full opacity-30 animate-ping animation-delay-200" />
+            <div className="absolute inset-0 bg-[#8EBEEF] rounded-full opacity-20 animate-ping" />
+            <div className="absolute inset-2 bg-[#8EBEEF] rounded-full opacity-30 animate-ping animation-delay-200" />
           </div>
           
           {/* 내 위치 마커 */}
-          <div className="relative z-10 w-12 h-12 bg-blue-600 rounded-full shadow-lg flex items-center justify-center border-4 border-white">
+          <div className="relative z-10 w-12 h-12 bg-[#8EBEEF] rounded-full shadow-lg flex items-center justify-center border-4 border-white">
             <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
               <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
             </svg>
           </div>
           <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 whitespace-nowrap">
-            <span className="text-xs font-bold bg-blue-600 text-white px-2 py-1 rounded">
+            <span className="text-xs font-bold bg-[#8EBEEF] text-white px-2 py-1 rounded">
               내 위치
             </span>
           </div>
