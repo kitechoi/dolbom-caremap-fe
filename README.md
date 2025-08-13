@@ -1,36 +1,76 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🥕 돌봄당근 (Dolbom Carrot)
 
-## Getting Started
+우리 동네 아동 돌봄 선생님 매칭 플랫폼
 
-First, run the development server:
+## 📱 주요 기능
 
+### 👩‍🏫 선생님 기능
+- **실시간 상태 관리**: 지금 가능(🟢), 예약 가능(🟡), 불가(⚫) 상태 설정
+- **활동 반경 설정**: 500m, 1km, 2km 중 선택
+- **대시보드**: 요청 관리, 일정 확인, 수익 관리
+- **프로필 관리**: 경력, 자격증, 시급 설정
+
+### 👨‍👩‍👧 부모님 기능
+- **지도 기반 검색**: 내 주변 선생님 실시간 확인
+- **거리별 정렬**: 가까운 선생님 우선 표시
+- **상세 필터**: 연령대, 시급, 평점별 검색
+- **직접 연락**: 선생님과 1:1 채팅
+
+## 🛠 기술 스택
+
+- **Frontend**: Next.js 14, TypeScript, Tailwind CSS
+- **State Management**: Zustand
+- **Deployment**: Vercel
+- **Architecture**: Clean Architecture
+
+## 🚀 시작하기
+
+### 개발 환경 실행
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 빌드
+```bash
+npm run build
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 프로덕션 실행
+```bash
+npm run start
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 📂 프로젝트 구조
 
-## Learn More
+```
+src/
+├── app/                    # Next.js 14 app router
+├── features/              # 도메인별 기능 모듈
+│   ├── teacher/          # 선생님 관련
+│   ├── parent/           # 부모 관련
+│   └── chat/             # 채팅 기능
+├── components/            # 공통 컴포넌트
+├── stores/               # Zustand 상태 관리
+├── types/                # TypeScript 타입 정의
+└── services/             # API 및 서비스 로직
+```
 
-To learn more about Next.js, take a look at the following resources:
+## 🎯 핵심 차별점
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. **당근마켓 스타일**: 동네 기반 매칭으로 신뢰도 향상
+2. **실시간 상태**: 선생님의 현재 가능 여부 즉시 확인
+3. **활동 반경**: 선생님이 직접 설정하는 활동 범위
+4. **직관적 UI**: 지도 기반으로 한눈에 파악 가능
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 📝 라이선스
 
-## Deploy on Vercel
+MIT License
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🤝 기여하기
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+이슈와 PR은 언제나 환영합니다!
+
+---
+
+**돌봄당근** - 우리 동네 믿을 수 있는 아동 돌봄 서비스 🥕
