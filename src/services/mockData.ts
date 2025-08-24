@@ -153,7 +153,7 @@ export const mockTeachers: Teacher[] = [
   {
     id: '5',
     name: '정유진 선생님',
-    profileImage: '',
+    profileImage: '/profile-yujin.png',
     bio: '한국대 영어교육과 4학년입니다. 아이들의 웃는 얼굴을 보면 힘이 나요! 급한 일이 생기셨을 때 언제든 연락주세요. 책임감을 갖고 아이를 내 동생처럼 안전하게 돌보겠습니다.',
     university: '한국대학교',
     major: '영어교육과',

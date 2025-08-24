@@ -57,6 +57,7 @@ const mockApplicants: Applicant[] = [
   {
     id: '3',
     name: '정유진 선생님',
+    profileImage: '/t2.png',
     university: '한국대학교',
     major: '영어교육과',
     grade: '4학년',
