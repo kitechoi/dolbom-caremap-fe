@@ -20,6 +20,13 @@ export const AvailabilityStatus: React.FC<AvailabilityStatusProps> = ({
       bgColor: 'bg-green-50',
       borderColor: 'border-green-500',
     },
+    [TeacherStatus.RESERVABLE]: {
+      icon: '🟡',
+      label: '예약 가능',
+      color: 'text-yellow-600',
+      bgColor: 'bg-yellow-50',
+      borderColor: 'border-yellow-500',
+    },
     [TeacherStatus.UNAVAILABLE]: {
       icon: '⚫',
       label: '불가',

@@ -35,12 +35,12 @@ export const TeacherDashboard: React.FC<TeacherDashboardProps> = ({
           <h2 className="text-lg font-semibold text-gray-900 mb-4">실시간 상태 설정</h2>
           <div className="grid grid-cols-3 gap-4">
             {[
-              { status: TeacherStatus.AVAILABLE, label: '지금 가능' },
-              { status: TeacherStatus.RESERVABLE, label: '예약 가능' },
-              { status: TeacherStatus.UNAVAILABLE, label: '불가' },
+              { status: TeacherStatus.AVAILABLE, label: '지금 가능', key: 'available' },
+              { status: TeacherStatus.RESERVABLE, label: '예약 가능', key: 'reservable' },
+              { status: TeacherStatus.UNAVAILABLE, label: '불가', key: 'unavailable' },
             ].map((item) => (
               <button
-                key={item.status}
+                key={item.key}
                 onClick={() => onStatusChange(item.status)}
                 className={`p-4 rounded-lg border-2 transition-all ${
                   teacher.status === item.status
