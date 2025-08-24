@@ -4,7 +4,10 @@ interface Applicant {
   id: string;
   name: string;
   profileImage?: string;
-  experience: number;
+  university: string;
+  major: string;
+  grade: string;
+  platformExperience: string;
   rating: number;
   reviewCount: number;
   distance: string;
@@ -23,36 +26,47 @@ interface ApplicantsListProps {
 const mockApplicants: Applicant[] = [
   {
     id: '1',
-    name: '이지민 선생님',
-    experience: 3,
-    rating: 4.8,
-    reviewCount: 42,
-    distance: '300m',
-    responseTime: '5분 전',
-    introduction: '안녕하세요! 아이들과 놀이를 통해 즐겁게 시간을 보내는 것을 좋아합니다.',
-    appliedAt: new Date(Date.now() - 5 * 60000),
+    name: '박지혜 선생님',
+    profileImage: '/profile-jihye.png',
+    university: '한국대학교',
+    major: '수학교육과',
+    grade: '3학년',
+    platformExperience: '맘시* 40회',
+    rating: 4.9,
+    reviewCount: 67,
+    distance: '534m',
+    responseTime: '2분 전',
+    introduction: '안녕하세요! 지금 바로 출발 가능합니다. 아이들을 진심으로 좋아하고 책임감 있게 돌보겠습니다.',
+    appliedAt: new Date(Date.now() - 2 * 60000),
   },
   {
     id: '2',
-    name: '김서연 선생님',
-    experience: 5,
-    rating: 4.9,
-    reviewCount: 67,
-    distance: '500m',
-    responseTime: '10분 전',
-    introduction: '유아교육 전공했고, 아이들 케어 경험이 많습니다. 바로 출발 가능합니다!',
-    appliedAt: new Date(Date.now() - 10 * 60000),
+    name: '이수진 선생님',
+    profileImage: '/profile-sujin.png',
+    university: '미래대학교',
+    major: '수학교육과',
+    grade: '4학년',
+    platformExperience: '자란* 25회',
+    rating: 4.8,
+    reviewCount: 56,
+    distance: '729m',
+    responseTime: '5분 전',
+    introduction: '급하신 것 같아 바로 지원했습니다! 동생들 돌본 경험 많고, 10분 내 도착 가능합니다.',
+    appliedAt: new Date(Date.now() - 5 * 60000),
   },
   {
     id: '3',
-    name: '박하늘 선생님',
-    experience: 2,
+    name: '정유진 선생님',
+    university: '한국대학교',
+    major: '영어교육과',
+    grade: '4학년',
+    platformExperience: '맘시* 18회',
     rating: 4.7,
-    reviewCount: 28,
-    distance: '800m',
-    responseTime: '15분 전',
-    introduction: '대학생이고 아이들을 좋아합니다. 성실하게 돌봄해드리겠습니다.',
-    appliedAt: new Date(Date.now() - 15 * 60000),
+    reviewCount: 38,
+    distance: '892m',
+    responseTime: '8분 전',
+    introduction: '하원 도움 경험 많습니다. 아이와 즐겁게 시간 보낼 수 있도록 하겠습니다!',
+    appliedAt: new Date(Date.now() - 8 * 60000),
   },
 ];
 
@@ -112,17 +126,25 @@ export const ApplicantsList: React.FC<ApplicantsListProps> = ({
                     <div className="flex items-start justify-between">
                       <div>
                         <h3 className="font-semibold text-lg">{applicant.name}</h3>
+                        <p className="text-sm text-gray-700 mt-0.5">
+                          {applicant.university} {applicant.major} {applicant.grade}
+                        </p>
                         <div className="flex items-center gap-3 mt-1 text-sm text-gray-600">
                           <span className="flex items-center">
                             <span className="text-yellow-400 mr-1">★</span>
                             {applicant.rating} ({applicant.reviewCount})
                           </span>
-                          <span>{applicant.experience}년 경력</span>
+                          <span className="text-blue-600 font-medium">✓ {applicant.platformExperience}</span>
                           <span>📍 {applicant.distance}</span>
                         </div>
                       </div>
                       <div className="text-right">
                         <p className="text-sm text-gray-500">{applicant.responseTime}</p>
+                        {applicant.distance === '534m' && (
+                          <span className="inline-block mt-1 px-2 py-1 bg-green-100 text-green-700 text-xs rounded-full">
+                            빠른 도착
+                          </span>
+                        )}
                       </div>
                     </div>
 
