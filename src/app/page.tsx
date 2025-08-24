@@ -106,9 +106,9 @@ export default function HomePage() {
       {/* 메인 컨텐츠 영역 */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
-          <div className="flex h-[600px]">
+          <div className="flex flex-col lg:flex-row h-[calc(100vh-250px)] lg:h-[600px]">
             {/* 지도 영역 */}
-            <div className="flex-1 relative">
+            <div className="flex-1 relative min-h-[400px] lg:min-h-full">
               {isLoading ? (
                 <div className="absolute inset-0 flex items-center justify-center bg-gray-50">
                   <div className="text-center">
@@ -128,7 +128,7 @@ export default function HomePage() {
 
             {/* 선생님 프로필 사이드바 */}
             {selectedTeacher && (
-              <div className="w-[480px] bg-white border-l border-gray-200 overflow-y-auto">
+              <div className="w-full lg:w-[480px] bg-white border-t lg:border-t-0 lg:border-l border-gray-200 overflow-y-auto max-h-[300px] lg:max-h-full">
                 <TeacherProfile
                   teacher={selectedTeacher}
                   onContact={() => handleContact(selectedTeacher)}
@@ -139,16 +139,16 @@ export default function HomePage() {
           </div>
 
           {/* 하단 컨트롤 바 */}
-          <div className="bg-gray-50 border-t border-gray-200 p-4">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-4">
-                <button className="flex items-center gap-2 px-3 py-1.5 bg-[#E2EEFB] text-[#5A7FA5] rounded-full hover:bg-[#C1DDF7] text-sm">
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div className="bg-gray-50 border-t border-gray-200 p-3 lg:p-4">
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
+              <div className="flex items-center gap-2 lg:gap-4 w-full sm:w-auto">
+                <button className="flex items-center gap-1 lg:gap-2 px-3 py-1.5 bg-[#E2EEFB] text-[#5A7FA5] rounded-full hover:bg-[#C1DDF7] text-xs lg:text-sm">
+                  <svg className="w-3 h-3 lg:w-4 lg:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                   </svg>
                   내 위치
                 </button>
-                <select className="px-3 py-1.5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-[#8EBEEF]">
+                <select className="px-3 py-1.5 border border-gray-300 rounded-lg text-xs lg:text-sm focus:outline-none focus:border-[#8EBEEF] flex-1 sm:flex-none">
                   <option>2km</option>
                   <option>5km</option>
                 </select>
@@ -156,7 +156,7 @@ export default function HomePage() {
               
               <button 
                 onClick={() => setShowRequestModal(true)}
-                className="px-3 py-1.5 text-sm bg-[#8EBEEF] text-white rounded-lg hover:bg-[#6BA5DC]">
+                className="w-full sm:w-auto px-4 py-2 text-sm bg-[#8EBEEF] text-white rounded-lg hover:bg-[#6BA5DC]">
                 긴급 돌봄 요청
               </button>
             </div>

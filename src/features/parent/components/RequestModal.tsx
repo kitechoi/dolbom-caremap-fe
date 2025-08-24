@@ -45,7 +45,7 @@ export const RequestModal: React.FC<RequestModalProps> = ({ isOpen, onClose, onS
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
       <div className="bg-white rounded-lg w-full max-w-2xl max-h-[90vh] overflow-y-auto">
         <div className="sticky top-0 bg-white border-b p-4">
           <div className="flex items-center justify-between">
@@ -74,7 +74,7 @@ export const RequestModal: React.FC<RequestModalProps> = ({ isOpen, onClose, onS
             />
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 긴급도 *
@@ -105,7 +105,7 @@ export const RequestModal: React.FC<RequestModalProps> = ({ isOpen, onClose, onS
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 시작 시간 *
@@ -135,7 +135,7 @@ export const RequestModal: React.FC<RequestModalProps> = ({ isOpen, onClose, onS
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 아이 나이 *

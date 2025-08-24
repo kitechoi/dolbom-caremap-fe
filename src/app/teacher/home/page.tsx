@@ -210,9 +210,9 @@ export default function TeacherHomePage() {
               </div>
             )}
 
-            <div className="bg-white rounded-lg shadow-md p-6">
-              <div className="flex justify-between items-center mb-4">
-                <h2 className="text-lg font-semibold">긴급 돌봄 요청</h2>
+            <div className="bg-white rounded-lg shadow-md p-4 lg:p-6">
+              <div className="flex justify-between items-center mb-3 lg:mb-4">
+                <h2 className="text-base lg:text-lg font-semibold">긴급 돌봄 요청</h2>
                 <select className="px-3 py-1 border rounded-lg text-sm">
                   <option>거리순</option>
                   <option>시간순</option>
