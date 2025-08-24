@@ -7,6 +7,7 @@ import { ParentSearch } from '@/features/parent/components/ParentSearch';
 import { ChatModal } from '@/features/chat/components/ChatModal';
 import { RequestModal } from '@/features/parent/components/RequestModal';
 import { ApplicantsList } from '@/features/parent/components/ApplicantsList';
+import { SuccessModal } from '@/features/parent/components/SuccessModal';
 import { useTeacherStore } from '@/stores/teacherStore';
 import { useUserStore } from '@/stores/userStore';
 import { mockTeachers } from '@/services/mockData';
@@ -21,6 +22,7 @@ export default function HomePage() {
   const [chatTeacher, setChatTeacher] = useState<Teacher | null>(null);
   const [showApplicants, setShowApplicants] = useState(false);
   const [currentRequestId, setCurrentRequestId] = useState<string>('request-1');
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
 
   useEffect(() => {
     loadTeachers();
@@ -48,11 +50,13 @@ export default function HomePage() {
 
   const handleRequestSubmit = (data: any) => {
     console.log('긴급 돌봄 요청:', data);
-    alert('긴급 돌봄 요청이 등록되었습니다. 곳 지원자가 연락을 드릴 거에요!');
+    setShowRequestModal(false);
+    setShowSuccessModal(true);
+    
     // 실제로는 API 호출
     setTimeout(() => {
       setShowApplicants(true);
-    }, 2000);
+    }, 3000);
   };
 
   const handleApplicantChat = (applicant: any) => {
@@ -194,6 +198,16 @@ export default function HomePage() {
         isOpen={showApplicants}
         onClose={() => setShowApplicants(false)}
         onChat={handleApplicantChat}
+      />
+
+      {/* 성공 모달 */}
+      <SuccessModal
+        isOpen={showSuccessModal}
+        onClose={() => setShowSuccessModal(false)}
+        title="긴급 돌봄 요청 등록 완료!"
+        message="주변 선생님들에게 알림이 전송되었어요. 곧 지원자가 나타날 거예요!"
+        onAction={() => setShowApplicants(true)}
+        actionText="지원자 확인"
       />
     </div>
   );
