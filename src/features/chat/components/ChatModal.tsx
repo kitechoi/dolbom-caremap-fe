@@ -9,26 +9,24 @@ interface ChatModalProps {
 
 export const ChatModal: React.FC<ChatModalProps> = ({ teacher, isOpen, onClose }) => {
   const [message, setMessage] = useState('');
-  const [messages, setMessages] = useState<{ id: string; sender: 'parent' | 'teacher'; text: string; time: Date }[]>([
-    {
-      id: '1',
-      sender: 'parent',
-      text: '안녕하세요, 지금 오실 수 있나요?',
-      time: new Date(),
-    }
-  ]);
+  const [messages, setMessages] = useState<{ id: string; sender: 'parent' | 'teacher'; text: string; time: Date }[]>([]);
+  const [showSuggestion, setShowSuggestion] = useState(true);
 
   if (!isOpen) return null;
 
-  const sendMessage = () => {
-    if (message.trim()) {
+  const sendMessage = (text?: string) => {
+    const messageToSend = text || message;
+    if (messageToSend.trim()) {
       setMessages([...messages, {
         id: Date.now().toString(),
         sender: 'parent',
-        text: message,
+        text: messageToSend,
         time: new Date(),
       }]);
-      setMessage('');
+      if (!text) {
+        setMessage('');
+      }
+      setShowSuggestion(false);
       
       // 자동 응답 (데모용)
       setTimeout(() => {
@@ -42,13 +40,21 @@ export const ChatModal: React.FC<ChatModalProps> = ({ teacher, isOpen, onClose }
     }
   };
 
+  const handleSuggestionClick = () => {
+    sendMessage('안녕하세요, 지금 오실 수 있나요?');
+  };
+
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
       <div className="bg-white rounded-lg w-full max-w-md h-[600px] flex flex-col">
         <div className="flex items-center justify-between p-4 border-b">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center">
-              <span className="text-xl">👤</span>
+            <div className="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center overflow-hidden">
+              {teacher.profileImage ? (
+                <img src={teacher.profileImage} alt={teacher.name} className="w-full h-full object-cover" />
+              ) : (
+                <span className="text-xl">👤</span>
+              )}
             </div>
             <div>
               <h3 className="font-semibold">{teacher.name}</h3>
@@ -84,22 +90,34 @@ export const ChatModal: React.FC<ChatModalProps> = ({ teacher, isOpen, onClose }
           ))}
         </div>
 
-        <div className="p-4 border-t">
-          <div className="flex gap-2">
-            <input
-              type="text"
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
-              onKeyPress={(e) => e.key === 'Enter' && sendMessage()}
-              placeholder="메시지를 입력하세요..."
-              className="flex-1 px-4 py-2 border rounded-lg focus:outline-none focus:border-[#8EBEEF]"
-            />
-            <button
-              onClick={sendMessage}
-              className="px-4 py-2 bg-[#8EBEEF] text-white rounded-lg hover:bg-[#6BA5DC]"
-            >
-              전송
-            </button>
+        <div className="border-t">
+          {messages.length === 0 && showSuggestion && (
+            <div className="px-4 py-2 border-b bg-gray-50">
+              <button
+                onClick={handleSuggestionClick}
+                className="w-full text-left px-4 py-2 bg-white text-gray-700 rounded-lg hover:bg-gray-100 transition-colors border"
+              >
+                💬 안녕하세요, 지금 오실 수 있나요?
+              </button>
+            </div>
+          )}
+          <div className="p-4">
+            <div className="flex gap-2">
+              <input
+                type="text"
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+                onKeyPress={(e) => e.key === 'Enter' && sendMessage()}
+                placeholder="메시지를 입력하세요..."
+                className="flex-1 px-4 py-2 border rounded-lg focus:outline-none focus:border-[#8EBEEF]"
+              />
+              <button
+                onClick={() => sendMessage()}
+                className="px-4 py-2 bg-[#8EBEEF] text-white rounded-lg hover:bg-[#6BA5DC]"
+              >
+                전송
+              </button>
+            </div>
           </div>
         </div>
       </div>
