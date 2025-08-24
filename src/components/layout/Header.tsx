@@ -23,9 +23,10 @@ export const Header: React.FC = () => {
   ];
 
   // 선생님 네비게이션 아이템
-  // const teacherNavItems = [
-  //   { href: '/teacher/home', label: '홈' },
-  // ];
+  const teacherNavItems = [
+    // { href: '/teacher/home', label: '홈' },
+    { href: '/teacher/home', label: '' },
+  ];
 
   return (
     <header className="bg-white shadow-sm border-b border-gray-200">
@@ -40,7 +41,7 @@ export const Header: React.FC = () => {
           </div>
           
           {/* 인증 페이지가 아닐 때만 네비게이션 표시 */}
-          {/* {!isAuthPage && (
+          {!isAuthPage && (
             <nav className="flex space-x-8">
               {(isTeacherPage ? teacherNavItems : parentNavItems).map((item) => (
                 <Link
@@ -57,7 +58,7 @@ export const Header: React.FC = () => {
               ))}
             </nav>
           )}
-           */}
+          
           <div className="flex items-center space-x-4">
             {/* 인증 페이지가 아닐 때만 사용자 정보 표시 */}
             {!isAuthPage && (
