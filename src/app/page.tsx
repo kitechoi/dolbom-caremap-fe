@@ -52,11 +52,7 @@ export default function HomePage() {
     console.log('긴급 돌봄 요청:', data);
     setShowRequestModal(false);
     setShowSuccessModal(true);
-    
-    // 실제로는 API 호출
-    setTimeout(() => {
-      setShowApplicants(true);
-    }, 3000);
+    // 지원자 목록은 사용자가 명시적으로 클릭했을 때만 표시
   };
 
   const handleApplicantChat = (applicant: any) => {
