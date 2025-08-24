@@ -3,6 +3,10 @@ export interface Teacher {
   name: string;
   profileImage?: string;
   bio: string;
+  university: string; // 대학교
+  major: string; // 학과
+  grade: string; // 학년
+  platformExperience: string; // 타 플랫폼 경력
   location: {
     lat: number;
     lng: number;
@@ -11,7 +15,7 @@ export interface Teacher {
   activityRadius: 500 | 1000 | 2000; // 활동반경 (미터)
   status: TeacherStatus;
   hourlyRate: number;
-  experience: number; // 경력 (년)
+  experience: number; // 돌봄 경험 (년)
   specialties: string[];
   ageGroups: AgeGroup[];
   availability: Availability[];
@@ -29,15 +33,13 @@ export interface Teacher {
 
 export enum TeacherStatus {
   AVAILABLE = 'AVAILABLE',     // 🟢 지금 가능
-  RESERVABLE = 'RESERVABLE',   // 🟡 예약 가능
   UNAVAILABLE = 'UNAVAILABLE'  // ⚫ 불가
 }
 
 export enum AgeGroup {
-  INFANT = 'INFANT',         // 0-1세
-  TODDLER = 'TODDLER',       // 1-3세
-  PRESCHOOL = 'PRESCHOOL',   // 3-5세
-  ELEMENTARY = 'ELEMENTARY'  // 6-12세
+  TODDLER = 'TODDLER',       // 2-4세
+  PRESCHOOL = 'PRESCHOOL',   // 5-7세
+  ELEMENTARY = 'ELEMENTARY'  // 8-13세
 }
 
 export interface Availability {

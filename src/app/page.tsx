@@ -30,7 +30,9 @@ export default function HomePage() {
     setLoading(true);
     // 실제로는 API 호출
     setTimeout(() => {
-      setTeachers(mockTeachers);
+      // 김은영 선생님(본인) 제외
+      const filteredTeachers = mockTeachers.filter(teacher => teacher.id !== '1');
+      setTeachers(filteredTeachers);
       setLoading(false);
     }, 500);
   };
@@ -94,8 +96,8 @@ export default function HomePage() {
                 {teachers.filter(t => t.status === 'AVAILABLE').length}명 지금 가능
               </span>
               <span className="flex items-center gap-1">
-                <span className="text-yellow-500">●</span>
-                {teachers.filter(t => t.status === 'RESERVABLE').length}명 예약 가능
+                <span className="text-gray-500">●</span>
+                {teachers.filter(t => t.status === 'UNAVAILABLE').length}명 불가
               </span>
               <span>
                 총 {teachers.length}명의 선생님

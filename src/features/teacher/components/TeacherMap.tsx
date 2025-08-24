@@ -155,9 +155,7 @@ export const TeacherMap: React.FC<TeacherMapProps> = ({
                   left: '50%',
                   top: '50%',
                   transform: 'translate(-50%, -50%)',
-                  borderColor: teacher.status === TeacherStatus.AVAILABLE ? '#10b981' :
-                              teacher.status === TeacherStatus.RESERVABLE ? '#f59e0b' :
-                              '#6b7280'
+                  borderColor: teacher.status === TeacherStatus.AVAILABLE ? '#10b981' : '#6b7280'
                 }}
               />
             )}
@@ -167,9 +165,7 @@ export const TeacherMap: React.FC<TeacherMapProps> = ({
               selectedTeacherId === teacher.id ? 'scale-110' : ''
             }`}>
               <div className={`w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center border-2 ${
-                teacher.status === TeacherStatus.AVAILABLE ? 'border-green-500' :
-                teacher.status === TeacherStatus.RESERVABLE ? 'border-yellow-500' :
-                'border-gray-400'
+                teacher.status === TeacherStatus.AVAILABLE ? 'border-green-500' : 'border-gray-400'
               }`}>
                 <AvailabilityStatus status={teacher.status} size="sm" />
               </div>
@@ -188,7 +184,7 @@ export const TeacherMap: React.FC<TeacherMapProps> = ({
                 <div className="absolute -bottom-20 left-1/2 transform -translate-x-1/2 z-20">
                   <div className="bg-white rounded-lg shadow-lg p-3 whitespace-nowrap">
                     <p className="font-semibold text-sm">{teacher.name}</p>
-                    <p className="text-xs text-gray-600">{teacher.hourlyRate.toLocaleString()}원/시간</p>
+                    <p className="text-xs text-gray-600">18,000원/시간</p>
                     <div className="flex items-center gap-1 mt-1">
                       <span className="text-yellow-400 text-xs">★</span>
                       <span className="text-xs">{teacher.rating}</span>
@@ -236,10 +232,6 @@ export const TeacherMap: React.FC<TeacherMapProps> = ({
           <div className="flex items-center gap-2">
             <AvailabilityStatus status={TeacherStatus.AVAILABLE} size="sm" />
             <span className="text-xs text-gray-600">지금 가능</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <AvailabilityStatus status={TeacherStatus.RESERVABLE} size="sm" />
-            <span className="text-xs text-gray-600">예약 가능</span>
           </div>
           <div className="flex items-center gap-2">
             <AvailabilityStatus status={TeacherStatus.UNAVAILABLE} size="sm" />

@@ -12,10 +12,9 @@ interface TeacherProfileProps {
 }
 
 const ageGroupLabels: Record<AgeGroup, string> = {
-  [AgeGroup.INFANT]: '영아 (0-1세)',
-  [AgeGroup.TODDLER]: '유아 (1-3세)',
-  [AgeGroup.PRESCHOOL]: '유치원 (3-5세)',
-  [AgeGroup.ELEMENTARY]: '초등 (6-12세)',
+  [AgeGroup.TODDLER]: '유아 (2-4세)',
+  [AgeGroup.PRESCHOOL]: '미취학 (5-7세)',
+  [AgeGroup.ELEMENTARY]: '초등 (8-13세)',
 };
 
 export const TeacherProfile: React.FC<TeacherProfileProps> = ({
@@ -53,7 +52,8 @@ export const TeacherProfile: React.FC<TeacherProfileProps> = ({
             </div>
             <div>
               <h3 className="font-semibold text-gray-900">{teacher.name}</h3>
-              <p className="text-sm text-gray-600">{teacher.experience}년 경력</p>
+              <p className="text-xs text-gray-600">{teacher.university} {teacher.grade}</p>
+              <p className="text-sm text-gray-600">돌봄 경험 {teacher.experience}년</p>
             </div>
           </div>
           <AvailabilityStatus status={teacher.status} size="md" />
@@ -95,6 +95,14 @@ export const TeacherProfile: React.FC<TeacherProfileProps> = ({
             </div>
             <div>
               <h2 className="text-2xl font-bold text-gray-900">{teacher.name}</h2>
+              <p className="text-base text-gray-600 mt-1">
+                {teacher.university} {teacher.major} {teacher.grade}
+              </p>
+              {teacher.platformExperience && (
+                <p className="text-sm text-blue-600 mt-1">
+                  🔵 {teacher.platformExperience} 돌봄 이력 검증 완료
+                </p>
+              )}
               <div className="flex items-center gap-4 mt-2">
                 <AvailabilityStatus status={teacher.status} showLabel />
                 {teacher.verified && (
@@ -102,7 +110,7 @@ export const TeacherProfile: React.FC<TeacherProfileProps> = ({
                     <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
-                    인증됨
+                    학생인증
                   </span>
                 )}
               </div>
@@ -112,8 +120,8 @@ export const TeacherProfile: React.FC<TeacherProfileProps> = ({
 
         <div className="grid grid-cols-4 gap-4 p-4 bg-gray-50 rounded-lg mb-6">
           <div className="text-center">
-            <p className="text-2xl font-bold text-gray-900">{teacher.experience}</p>
-            <p className="text-sm text-gray-600">년 경력</p>
+            <p className="text-2xl font-bold text-gray-900">{teacher.experience.toFixed(1)}</p>
+            <p className="text-sm text-gray-600">년 경험</p>
           </div>
           <div className="text-center">
             <p className="text-2xl font-bold text-gray-900">{teacher.completedCareCount}</p>
@@ -124,8 +132,8 @@ export const TeacherProfile: React.FC<TeacherProfileProps> = ({
             <p className="text-sm text-gray-600">{teacher.reviewCount}개 리뷰</p>
           </div>
           <div className="text-center">
-            <p className="text-2xl font-bold text-gray-900">{teacher.certificatesCount}</p>
-            <p className="text-sm text-gray-600">자격증</p>
+            <p className="text-2xl font-bold text-gray-900">{teacher.completedCareCount}</p>
+            <p className="text-sm text-gray-600">돌봄 횟수</p>
           </div>
         </div>
 
