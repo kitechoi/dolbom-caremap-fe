@@ -11,6 +11,7 @@ interface RequestData {
   date: string;
   startTime: string;
   endTime: string;
+  childName: string;
   childAge: string;
   location: string;
   description: string;
@@ -23,6 +24,7 @@ export const RequestModal: React.FC<RequestModalProps> = ({ isOpen, onClose, onS
     date: '',
     startTime: '',
     endTime: '',
+    childName: '',
     childAge: '',
     location: '',
     description: '',
@@ -138,6 +140,21 @@ export const RequestModal: React.FC<RequestModalProps> = ({ isOpen, onClose, onS
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
+                아이 이름 *
+              </label>
+              <input
+                type="text"
+                name="childName"
+                value={formData.childName}
+                onChange={handleChange}
+                placeholder="예: 김서연"
+                className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-[#8EBEEF]"
+                required
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
                 아이 나이 *
               </label>
               <input
@@ -150,21 +167,21 @@ export const RequestModal: React.FC<RequestModalProps> = ({ isOpen, onClose, onS
                 required
               />
             </div>
+          </div>
 
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                위치 *
-              </label>
-              <input
-                type="text"
-                name="location"
-                value={formData.location}
-                onChange={handleChange}
-                placeholder="예: 서울시 중구 명동"
-                className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-[#8EBEEF]"
-                required
-              />
-            </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              위치 *
+            </label>
+            <input
+              type="text"
+              name="location"
+              value={formData.location}
+              onChange={handleChange}
+              placeholder="예: 서울시 중구 명동"
+              className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-[#8EBEEF]"
+              required
+            />
           </div>
 
           <div>
