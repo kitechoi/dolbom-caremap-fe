@@ -95,10 +95,6 @@ export default function HomePage() {
                 <span className="text-green-500">●</span>
                 {teachers.filter(t => t.status === 'AVAILABLE').length}명 지금 가능
               </span>
-              <span className="flex items-center gap-1">
-                <span className="text-gray-500">●</span>
-                {teachers.filter(t => t.status === 'UNAVAILABLE').length}명 불가
-              </span>
               <span>
                 총 {teachers.length}명의 선생님
               </span>

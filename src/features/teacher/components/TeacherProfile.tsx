@@ -189,7 +189,7 @@ export const TeacherProfile: React.FC<TeacherProfileProps> = ({
           </div>
 
           <div>
-            <h3 className="font-semibold text-gray-900 mb-3">후기 ({reviews.length}개)</h3>
+            <h3 className="font-semibold text-gray-900 mb-3">후기</h3>
             <div className="space-y-3">
               {(showAllReviews ? reviews : reviews.slice(0, 3)).map((review) => (
                 <div key={review.id} className="border rounded-lg p-4 bg-gray-50">
@@ -224,7 +224,7 @@ export const TeacherProfile: React.FC<TeacherProfileProps> = ({
                 onClick={() => setShowAllReviews(!showAllReviews)}
                 className="mt-3 text-sm text-[#8EBEEF] hover:underline"
               >
-                {showAllReviews ? '접기' : `후기 ${reviews.length - 3}개 더보기`}
+                {showAllReviews ? '접기' : '후기 더보기'}
               </button>
             )}
           </div>
