@@ -244,33 +244,41 @@ export const TeacherMap: React.FC<TeacherMapProps> = ({
       <div className="absolute top-4 left-4 bg-white rounded-lg shadow-md p-3 max-w-xs">
         <h4 className="text-sm font-semibold text-gray-700 mb-2">가까운 선생님</h4>
         <div className="space-y-2 max-h-32 overflow-y-auto">
-          {teachersWithDistance
-            .filter(teacher => teacher.status === TeacherStatus.AVAILABLE)
-            .slice(0, 3)
-            .map((teacher, index) => {
-              // 거리 하드코딩 (더 자연스럽게)
-              const distances: {[key: string]: string} = {
-                '박지혜 선생님': '534m',
-                '이수진 선생님': '729m',
-                '정유진 선생님': '892m'
-              };
-              
-              return (
-                <div 
-                  key={teacher.id}
-                  className="flex items-center justify-between text-xs cursor-pointer hover:bg-gray-50 p-1 rounded"
-                  onClick={() => onTeacherClick?.(teacher)}
-                >
-                  <div className="flex items-center gap-2">
-                    <AvailabilityStatus status={teacher.status} size="sm" />
-                    <span className="font-medium">{teacher.name}</span>
-                  </div>
-                  <span className="text-gray-500">
-                    {distances[teacher.name] || `${350 + index * 150}m`}
-                  </span>
+          {(() => {
+            // 거리 정보를 포함한 선생님 배열 생성
+            const teachersWithDistanceInfo = teachersWithDistance
+              .filter(teacher => teacher.status === TeacherStatus.AVAILABLE)
+              .map(teacher => {
+                const distances: {[key: string]: number} = {
+                  '김지아 선생님': 534,
+                  '이수진 선생님': 729,
+                  '정유진 선생님': 892
+                };
+                return {
+                  ...teacher,
+                  distanceValue: distances[teacher.name] || 999
+                };
+              })
+              // 거리순으로 정렬
+              .sort((a, b) => a.distanceValue - b.distanceValue)
+              .slice(0, 3);
+
+            return teachersWithDistanceInfo.map((teacher) => (
+              <div 
+                key={teacher.id}
+                className="flex items-center justify-between text-xs cursor-pointer hover:bg-gray-50 p-1 rounded"
+                onClick={() => onTeacherClick?.(teacher)}
+              >
+                <div className="flex items-center gap-2">
+                  <AvailabilityStatus status={teacher.status} size="sm" />
+                  <span className="font-medium">{teacher.name}</span>
                 </div>
-              );
-            })}
+                <span className="text-gray-500">
+                  {teacher.distanceValue < 999 ? `${teacher.distanceValue}m` : `${teacher.distanceValue}m`}
+                </span>
+              </div>
+            ));
+          })()}
         </div>
       </div>
     </div>

@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { TeacherProfile } from '@/features/teacher/components/TeacherProfile';
+import { Teacher, TeacherStatus, AgeGroup } from '@/types';
 
 interface Applicant {
   id: string;
@@ -25,8 +27,8 @@ interface ApplicantsListProps {
 
 const mockApplicants: Applicant[] = [
   {
-    id: '1',
-    name: '박지혜 선생님',
+    id: '3',
+    name: '김지아 선생님',
     profileImage: '/profile-jihye.png',
     university: '한국대학교',
     major: '수학교육과',
@@ -35,7 +37,7 @@ const mockApplicants: Applicant[] = [
     rating: 4.9,
     reviewCount: 67,
     distance: '534m',
-    responseTime: '2분 전',
+    responseTime: '5분 이내',
     introduction: '안녕하세요! 지금 바로 출발 가능합니다. 아이들을 진심으로 좋아하고 책임감 있게 돌보겠습니다.',
     appliedAt: new Date(Date.now() - 2 * 60000),
   },
@@ -50,12 +52,12 @@ const mockApplicants: Applicant[] = [
     rating: 4.8,
     reviewCount: 56,
     distance: '729m',
-    responseTime: '5분 전',
+    responseTime: '10분 이내',
     introduction: '급하신 것 같아 바로 지원했습니다! 동생들 돌본 경험 많고, 10분 내 도착 가능합니다.',
     appliedAt: new Date(Date.now() - 5 * 60000),
   },
   {
-    id: '3',
+    id: '5',
     name: '정유진 선생님',
     profileImage: '/t2.png',
     university: '한국대학교',
@@ -78,6 +80,7 @@ export const ApplicantsList: React.FC<ApplicantsListProps> = ({
   onChat,
 }) => {
   const [selectedApplicant, setSelectedApplicant] = useState<string | null>(null);
+  const [showProfile, setShowProfile] = useState<Applicant | null>(null);
 
   if (!isOpen) return null;
 
@@ -135,7 +138,7 @@ export const ApplicantsList: React.FC<ApplicantsListProps> = ({
                             <span className="text-yellow-400 mr-1">★</span>
                             {applicant.rating} ({applicant.reviewCount})
                           </span>
-                          <span className="text-blue-600 font-medium">✓ 인증된 돌봄 {applicant.verifiedCareCount}회</span>
+                          <span className="text-blue-600 font-medium">✓ 아이로뷰 돌봄 {applicant.verifiedCareCount}회</span>
                           <span>📍 {applicant.distance}</span>
                         </div>
                       </div>
@@ -155,6 +158,7 @@ export const ApplicantsList: React.FC<ApplicantsListProps> = ({
                       <button 
                         onClick={(e) => {
                           e.stopPropagation();
+                          setShowProfile(applicant);
                         }}
                         className="px-4 py-2 border border-[#8EBEEF] text-[#5A7FA5] rounded-lg hover:bg-[#E2EEFB] text-sm transition-colors"
                       >
@@ -181,6 +185,56 @@ export const ApplicantsList: React.FC<ApplicantsListProps> = ({
           </div>
         </div>
       </div>
+
+      {/* 프로필 모달 */}
+      {showProfile && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[60]">
+          <div className="bg-white rounded-lg w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+            <TeacherProfile
+              teacher={{
+                id: showProfile.id,
+                name: showProfile.name,
+                profileImage: showProfile.profileImage || '',
+                bio: showProfile.id === '3' 
+                  ? '한국대 수학교육과 3학년입니다. 아이들을 진심으로 좋아하고 함께 있으면 저도 행복해져요. 갑작스러운 요청에도 최선을 다해 빠르게 도착하고, 부모님께서 마음 편히 일하실 수 있도록 책임감 있게 돌보겠습니다.'
+                  : showProfile.introduction,
+                university: showProfile.university,
+                major: showProfile.major,
+                grade: showProfile.grade,
+                platformExperience: '맘시* 40회, 자란* 28회 돌봄 이력 검증 완료',
+                location: {
+                  lat: 37.5665,
+                  lng: 126.9780,
+                  address: '서울시 서대문구 남가좌동',
+                },
+                activityRadius: 1000,
+                displayDistance: showProfile.distance,
+                status: TeacherStatus.AVAILABLE,
+                hourlyRate: 18000,
+                experience: showProfile.verifiedCareCount > 50 ? 1.5 : 1,
+                specialties: ['안전돌봄', '실내놀이', '긴급돌봄'],
+                ageGroups: [AgeGroup.TODDLER, AgeGroup.PRESCHOOL],
+                availability: [],
+                rating: showProfile.rating,
+                reviewCount: showProfile.reviewCount,
+                verified: true,
+                createdAt: new Date(),
+                updatedAt: new Date(),
+                lastActiveAt: new Date(),
+                phone: '010-0000-0000',
+                responseTime: showProfile.responseTime,
+                certificatesCount: 3,
+                completedCareCount: showProfile.verifiedCareCount,
+              }}
+              onClose={() => setShowProfile(null)}
+              onContact={() => {
+                onChat(showProfile);
+                setShowProfile(null);
+              }}
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 };

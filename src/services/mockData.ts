@@ -77,7 +77,7 @@ export const mockTeachers: Teacher[] = [
   },
   {
     id: '3',
-    name: '박지혜 선생님',
+    name: '김지아 선생님',
     profileImage: '/profile-jihye.png',
     bio: '한국대 수학교육과 3학년입니다. 아이들을 진심으로 좋아하고 함께 있으면 저도 행복해져요. 갑작스러운 요청에도 최선을 다해 빠르게 도착하고, 부모님께서 마음 편히 일하실 수 있도록 책임감 있게 돌보겠습니다.',
     university: '한국대학교',

@@ -20,7 +20,7 @@ export const useUserStore = create<UserStore>((set) => ({
   // 초기 상태 - 김은영님이 부모로 로그인된 상태
   user: {
     id: 'user-1',
-    name: '김은영',
+    name: '박지은',
     email: 'kim@example.com',
     parentId: 'parent-1',
   },

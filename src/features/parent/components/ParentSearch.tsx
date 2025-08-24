@@ -11,7 +11,6 @@ export const ParentSearch: React.FC<ParentSearchProps> = ({ onSearch }) => {
   const [filters, setFilters] = useState<SearchFilters>({});
   
   const ageGroups = [
-    { value: AgeGroup.INFANT, label: '영아 (0-1세)' },
     { value: AgeGroup.TODDLER, label: '유아 (1-3세)' },
     { value: AgeGroup.PRESCHOOL, label: '유치원 (3-5세)' },
     { value: AgeGroup.ELEMENTARY, label: '초등 (6-12세)' },

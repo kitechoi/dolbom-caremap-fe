@@ -31,7 +31,7 @@ const mockChatRooms: ChatRoom[] = [
   },
   {
     id: '3',
-    teacherName: '박지혜 선생님',
+    teacherName: '김지아 선생님',
     lastMessage: '내일 오후 2시에 뵙겠습니다',
     lastMessageTime: new Date(Date.now() - 2 * 60 * 60000),
     unreadCount: 0,
