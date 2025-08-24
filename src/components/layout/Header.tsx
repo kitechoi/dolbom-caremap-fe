@@ -7,18 +7,14 @@ import { useUserStore } from '@/stores/userStore';
 
 export const Header: React.FC = () => {
   const pathname = usePathname();
-  const { user, switchRole } = useUserStore();
+  const { user } = useUserStore();
 
-  // 역할별 네비게이션 아이템
-  const navItems = user?.currentRole === 'teacher' 
-    ? [
-        { href: '/teacher/dashboard', label: '대시보드' },
-        { href: '/', label: '선생님 찾기' },
-      ]
-    : [
-        { href: '/', label: '선생님 찾기' },
-        { href: '/parent/bookings', label: '내 예약' },
-      ];
+  // 부모 네비게이션 아이템
+  const navItems = [
+    { href: '/', label: '선생님 찾기' },
+    { href: '/parent/requests', label: '내 요청' },
+    { href: '/parent/messages', label: '메시지' },
+  ];
 
   return (
     <header className="bg-white shadow-sm border-b border-gray-200">
@@ -30,31 +26,6 @@ export const Header: React.FC = () => {
               <span className="ml-2 text-sm text-gray-600">우리 아이를, 동네에서, 사랑의 시선으로</span>
             </Link>
             
-            {/* 역할 전환 버튼 */}
-            {user && user.roles.length > 1 && (
-              <div className="flex items-center gap-2 ml-4 px-3 py-1 rounded-full">
-                <button
-                  onClick={() => switchRole('parent')}
-                  className={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${
-                    user.currentRole === 'parent' 
-                      ? 'bg-[#8EBEEF] text-white' 
-                      : 'text-gray-600 hover:bg-[#E2EEFB]'
-                  }`}
-                >
-                  부모
-                </button>
-                <button
-                  onClick={() => switchRole('teacher')}
-                  className={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${
-                    user.currentRole === 'teacher' 
-                      ? 'bg-[#8EBEEF] text-white' 
-                      : 'text-gray-600 hover:bg-[#E2EEFB]'
-                  }`}
-                >
-                  선생님
-                </button>
-              </div>
-            )}
           </div>
           
           <nav className="flex space-x-8">
@@ -76,11 +47,8 @@ export const Header: React.FC = () => {
           <div className="flex items-center space-x-4">
             {/* 현재 사용자 정보 */}
             <div className="flex items-center gap-2 text-sm">
-              <span className="text-gray-500">
-                {user?.currentRole === 'teacher' ? '선생님' : '부모'} 모드
-              </span>
               <span className="font-medium text-gray-700">
-                {user?.name}님
+                {user?.name} 부모님
               </span>
             </div>
             

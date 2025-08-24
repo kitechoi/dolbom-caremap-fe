@@ -1,7 +1,8 @@
-import React from 'react';
-import { Teacher, AgeGroup } from '@/types';
+import React, { useState, useEffect } from 'react';
+import { Teacher, AgeGroup, Review } from '@/types';
 import { AvailabilityStatus } from './AvailabilityStatus';
 import { Button } from '@/components/common';
+import { getReviewsByTeacherId } from '@/services/mockReviews';
 
 interface TeacherProfileProps {
   teacher: Teacher;
@@ -23,6 +24,15 @@ export const TeacherProfile: React.FC<TeacherProfileProps> = ({
   onClose,
   isCompact = false,
 }) => {
+  const [reviews, setReviews] = useState<Review[]>([]);
+  const [showAllReviews, setShowAllReviews] = useState(false);
+
+  useEffect(() => {
+    if (teacher) {
+      const teacherReviews = getReviewsByTeacherId(teacher.id);
+      setReviews(teacherReviews);
+    }
+  }, [teacher]);
   const radiusLabels = {
     500: '500m',
     1000: '1km',
@@ -55,7 +65,6 @@ export const TeacherProfile: React.FC<TeacherProfileProps> = ({
             <span className="font-medium">{teacher.rating}</span>
             <span className="text-gray-400 ml-1">({teacher.reviewCount})</span>
           </div>
-          <p className="text-gray-600">시급: {teacher.hourlyRate.toLocaleString()}원</p>
           <p className="text-gray-500 line-clamp-2">{teacher.bio}</p>
         </div>
       </div>
@@ -130,8 +139,8 @@ export const TeacherProfile: React.FC<TeacherProfileProps> = ({
             <h3 className="font-semibold text-gray-900 mb-2">돌봄 정보</h3>
             <div className="space-y-2">
               <div className="flex items-center justify-between py-2 border-b">
-                <span className="text-gray-600">시간당 요금</span>
-                <span className="font-semibold">{teacher.hourlyRate.toLocaleString()}원</span>
+                <span className="text-gray-600">돌봄 요금</span>
+                <span className="font-semibold">18,000원 (시간당 고정)</span>
               </div>
               <div className="flex items-center justify-between py-2 border-b">
                 <span className="text-gray-600">활동 반경</span>
@@ -169,6 +178,47 @@ export const TeacherProfile: React.FC<TeacherProfileProps> = ({
           <div>
             <h3 className="font-semibold text-gray-900 mb-2">위치</h3>
             <p className="text-gray-700">{teacher.location.address}</p>
+          </div>
+
+          <div>
+            <h3 className="font-semibold text-gray-900 mb-3">후기 ({reviews.length}개)</h3>
+            <div className="space-y-3">
+              {(showAllReviews ? reviews : reviews.slice(0, 3)).map((review) => (
+                <div key={review.id} className="border rounded-lg p-4 bg-gray-50">
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="flex items-center gap-2">
+                      <span className="font-medium text-gray-900">{review.parentName}</span>
+                      <div className="flex items-center">
+                        {[...Array(5)].map((_, i) => (
+                          <span key={i} className={i < review.rating ? 'text-yellow-400' : 'text-gray-300'}>
+                            ★
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                    <span className="text-sm text-gray-500">
+                      {new Date(review.createdAt).toLocaleDateString('ko-KR')}
+                    </span>
+                  </div>
+                  <p className="text-gray-700 mb-2">{review.comment}</p>
+                  <div className="flex flex-wrap gap-1">
+                    {review.tags.map((tag, idx) => (
+                      <span key={idx} className="px-2 py-1 bg-white text-xs text-gray-600 rounded-full border">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+            {reviews.length > 3 && (
+              <button
+                onClick={() => setShowAllReviews(!showAllReviews)}
+                className="mt-3 text-sm text-[#8EBEEF] hover:underline"
+              >
+                {showAllReviews ? '접기' : `후기 ${reviews.length - 3}개 더보기`}
+              </button>
+            )}
           </div>
         </div>
 
