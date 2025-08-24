@@ -7,7 +7,7 @@ interface Applicant {
   university: string;
   major: string;
   grade: string;
-  platformExperience: string;
+  verifiedCareCount: number;
   rating: number;
   reviewCount: number;
   distance: string;
@@ -31,7 +31,7 @@ const mockApplicants: Applicant[] = [
     university: '한국대학교',
     major: '수학교육과',
     grade: '3학년',
-    platformExperience: '맘시* 40회',
+    verifiedCareCount: 68,
     rating: 4.9,
     reviewCount: 67,
     distance: '534m',
@@ -46,7 +46,7 @@ const mockApplicants: Applicant[] = [
     university: '미래대학교',
     major: '수학교육과',
     grade: '4학년',
-    platformExperience: '자란* 25회',
+    verifiedCareCount: 55,
     rating: 4.8,
     reviewCount: 56,
     distance: '729m',
@@ -61,7 +61,7 @@ const mockApplicants: Applicant[] = [
     university: '한국대학교',
     major: '영어교육과',
     grade: '4학년',
-    platformExperience: '맘시* 18회',
+    verifiedCareCount: 40,
     rating: 4.7,
     reviewCount: 38,
     distance: '892m',
@@ -135,7 +135,7 @@ export const ApplicantsList: React.FC<ApplicantsListProps> = ({
                             <span className="text-yellow-400 mr-1">★</span>
                             {applicant.rating} ({applicant.reviewCount})
                           </span>
-                          <span className="text-blue-600 font-medium">✓ {applicant.platformExperience}</span>
+                          <span className="text-blue-600 font-medium">✓ 인증된 돌봄 {applicant.verifiedCareCount}회</span>
                           <span>📍 {applicant.distance}</span>
                         </div>
                       </div>
@@ -152,16 +152,12 @@ export const ApplicantsList: React.FC<ApplicantsListProps> = ({
                     <p className="mt-3 text-gray-700">{applicant.introduction}</p>
 
                     <div className="mt-4 flex gap-2">
-                      <button
+                      <button 
                         onClick={(e) => {
                           e.stopPropagation();
-                          onChat(applicant);
                         }}
-                        className="px-4 py-2 bg-[#8EBEEF] text-white rounded-lg hover:bg-[#6BA5DC] text-sm"
+                        className="px-4 py-2 border border-[#8EBEEF] text-[#5A7FA5] rounded-lg hover:bg-[#E2EEFB] text-sm transition-colors"
                       >
-                        채팅하기
-                      </button>
-                      <button className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
                         프로필 보기
                       </button>
                     </div>
