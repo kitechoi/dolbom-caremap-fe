@@ -9,6 +9,11 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "아이로뷰",
   description: "우리 아이를, 동네에서, 사랑의 시선으로",
+  icons: {
+    icon: '/iloview_logo.png',
+    shortcut: '/iloview_logo.png',
+    apple: '/iloview_logo.png',
+  },
 };
 
 export default function RootLayout({

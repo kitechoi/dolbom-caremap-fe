@@ -13,7 +13,7 @@ export const Header: React.FC = () => {
   const navItems = [
     { href: '/', label: '선생님 찾기' },
     { href: '/parent/requests', label: '내 요청' },
-    { href: '/parent/messages', label: '메시지' },
+    // { href: '/parent/messages', label: '메시지' },
   ];
 
   return (

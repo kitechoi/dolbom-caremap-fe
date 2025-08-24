@@ -154,16 +154,11 @@ export default function HomePage() {
                 </select>
               </div>
               
-              <div className="flex gap-2">
-                <button className="px-3 py-1.5 text-sm border border-gray-300 rounded-lg hover:bg-gray-50">
-                  리스트 보기
-                </button>
-                <button 
-                  onClick={() => setShowRequestModal(true)}
-                  className="px-3 py-1.5 text-sm bg-[#8EBEEF] text-white rounded-lg hover:bg-[#6BA5DC]">
-                  긴급 돌봄 요청
-                </button>
-              </div>
+              <button 
+                onClick={() => setShowRequestModal(true)}
+                className="px-3 py-1.5 text-sm bg-[#8EBEEF] text-white rounded-lg hover:bg-[#6BA5DC]">
+                긴급 돌봄 요청
+              </button>
             </div>
           </div>
         </div>

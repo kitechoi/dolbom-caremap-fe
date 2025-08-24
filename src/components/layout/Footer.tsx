@@ -6,9 +6,9 @@ export const Footer: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">돌봄지도</h3>
+            <h3 className="text-lg font-semibold text-gray-900 mb-4">아이로뷰</h3>
             <p className="text-sm text-gray-600">
-              모든 돌봄 서비스를 한눈에 찾아보세요
+              우리 아이를, 동네에서, 사랑의 시선으로
             </p>
           </div>
           
