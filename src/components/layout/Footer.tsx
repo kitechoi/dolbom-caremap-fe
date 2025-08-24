@@ -47,7 +47,7 @@ export const Footer: React.FC = () => {
         
         <div className="mt-8 pt-8 border-t border-gray-200">
           <p className="text-center text-sm text-gray-600">
-            © 2024 돌봄지도. All rights reserved.
+            © 2025 아이로뷰. All rights reserved.
           </p>
         </div>
       </div>

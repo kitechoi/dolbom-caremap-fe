@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { TeacherProfile } from '@/features/teacher/components/TeacherProfile';
+import { ChatModal } from '@/features/chat/components/ChatModal';
 import { Teacher, TeacherStatus, AgeGroup } from '@/types';
 
 interface Applicant {
@@ -80,7 +81,9 @@ export const ApplicantsList: React.FC<ApplicantsListProps> = ({
   onChat,
 }) => {
   const [selectedApplicant, setSelectedApplicant] = useState<string | null>(null);
+  const [selectedApplicantData, setSelectedApplicantData] = useState<Applicant | null>(null);
   const [showProfile, setShowProfile] = useState<Applicant | null>(null);
+  const [showChatModal, setShowChatModal] = useState(false);
 
   if (!isOpen) return null;
 
@@ -111,7 +114,10 @@ export const ApplicantsList: React.FC<ApplicantsListProps> = ({
                     ? 'border-[#8EBEEF] bg-blue-50'
                     : 'border-gray-200 hover:border-gray-300'
                 }`}
-                onClick={() => setSelectedApplicant(applicant.id)}
+                onClick={() => {
+                  setSelectedApplicant(applicant.id);
+                  setSelectedApplicantData(applicant);
+                }}
               >
                 <div className="flex items-start gap-4">
                   <div className="w-16 h-16 bg-gray-200 rounded-full flex items-center justify-center flex-shrink-0">
@@ -178,7 +184,9 @@ export const ApplicantsList: React.FC<ApplicantsListProps> = ({
               마음에 드는 선생님을 선택하여 채팅으로 상세 내용을 논의하세요
             </p>
             {selectedApplicant && (
-              <button className="px-4 py-2 bg-[#EF8E8E] text-white rounded-lg hover:bg-[#E67E7E]">
+              <button 
+                onClick={() => setShowChatModal(true)}
+                className="px-4 py-2 bg-[#EF8E8E] text-white rounded-lg hover:bg-[#E67E7E]">
                 선택한 선생님과 매칭
               </button>
             )}
@@ -234,6 +242,50 @@ export const ApplicantsList: React.FC<ApplicantsListProps> = ({
             />
           </div>
         </div>
+      )}
+
+      {/* 채팅 모달 */}
+      {showChatModal && selectedApplicantData && (
+        <ChatModal
+          teacher={{
+            id: selectedApplicantData.id,
+            name: selectedApplicantData.name,
+            profileImage: selectedApplicantData.profileImage || '',
+            bio: selectedApplicantData.introduction,
+            university: selectedApplicantData.university,
+            major: selectedApplicantData.major,
+            grade: selectedApplicantData.grade,
+            platformExperience: `아이로뷰 돌봄 ${selectedApplicantData.verifiedCareCount}회`,
+            location: {
+              lat: 37.5665,
+              lng: 126.9780,
+              address: '서울시 서대문구 남가좌동',
+            },
+            activityRadius: 1000,
+            displayDistance: selectedApplicantData.distance,
+            status: TeacherStatus.AVAILABLE,
+            hourlyRate: 18000,
+            experience: 1.5,
+            specialties: ['안전돌봄', '실내놀이', '긴급돌봄'],
+            ageGroups: [AgeGroup.TODDLER, AgeGroup.PRESCHOOL],
+            availability: [],
+            rating: selectedApplicantData.rating,
+            reviewCount: selectedApplicantData.reviewCount,
+            verified: true,
+            createdAt: new Date(),
+            updatedAt: new Date(),
+            lastActiveAt: new Date(),
+            phone: '010-0000-0000',
+            responseTime: selectedApplicantData.responseTime,
+            certificatesCount: 3,
+            completedCareCount: selectedApplicantData.verifiedCareCount,
+          }}
+          isOpen={showChatModal}
+          onClose={() => {
+            setShowChatModal(false);
+            onClose();
+          }}
+        />
       )}
     </div>
   );

@@ -7,8 +7,8 @@ import { Footer } from "@/components/layout/Footer";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "돌봄지도 - CareMap",
-  description: "모든 돌봄 서비스를 한눈에 찾아보세요",
+  title: "아이로뷰",
+  description: "우리 아이를, 동네에서, 사랑의 시선으로",
 };
 
 export default function RootLayout({
