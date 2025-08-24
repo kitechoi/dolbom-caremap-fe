@@ -151,10 +151,6 @@ export const TeacherProfile: React.FC<TeacherProfileProps> = ({
                 <span className="font-semibold">18,000원 (시간당 고정)</span>
               </div>
               <div className="flex items-center justify-between py-2 border-b">
-                <span className="text-gray-600">활동 반경</span>
-                <span className="font-semibold">{radiusLabels[teacher.activityRadius]}</span>
-              </div>
-              <div className="flex items-center justify-between py-2 border-b">
                 <span className="text-gray-600">응답 시간</span>
                 <span className="font-semibold">{teacher.responseTime}</span>
               </div>

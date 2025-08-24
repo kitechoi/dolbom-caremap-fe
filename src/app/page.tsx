@@ -149,8 +149,6 @@ export default function HomePage() {
                   내 위치
                 </button>
                 <select className="px-3 py-1.5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-[#8EBEEF]">
-                  <option>500m</option>
-                  <option>1km</option>
                   <option>2km</option>
                   <option>5km</option>
                 </select>
