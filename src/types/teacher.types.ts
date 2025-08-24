@@ -13,6 +13,7 @@ export interface Teacher {
     address: string;
   };
   activityRadius: 500 | 1000 | 2000; // 활동반경 (미터)
+  displayDistance?: string; // 표시용 거리 (예: "534m")
   status: TeacherStatus;
   hourlyRate: number;
   experience: number; // 돌봄 경험 (년)

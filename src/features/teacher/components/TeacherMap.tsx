@@ -173,9 +173,9 @@ export const TeacherMap: React.FC<TeacherMapProps> = ({
               {/* 거리 표시 */}
               <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 whitespace-nowrap">
                 <span className="text-xs font-medium bg-white px-2 py-0.5 rounded shadow-sm">
-                  {teacher.distance < 1 
+                  {teacher.displayDistance || (teacher.distance < 1 
                     ? `${Math.round(teacher.distance * 1000)}m` 
-                    : `${teacher.distance.toFixed(1)}km`}
+                    : `${teacher.distance.toFixed(1)}km`)}
                 </span>
               </div>
 
